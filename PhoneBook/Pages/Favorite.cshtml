@@ -1,0 +1,44 @@
+﻿@page
+@model PhoneBook.Pages.FavoriteModel
+@{
+    ViewData["Title"] = "Favorite";
+}
+<br />
+<h1><center>List of Favorite Contacts</center></h1
+<br /><br /><br />
+<a class='btn btn-primary btn-sm' href='/CreateFavorite'>Add Contact</a>
+<br />
+<br />
+
+<table class="table">
+    <thead>
+        <tr> 
+            <th>Name</th>  
+            <th>Surname</th>  
+            <th>Phone Number</th>
+            <th>E-mail</th>
+            <th>Address</th>
+            <th>Note</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.contactList)
+        {
+            <tr>
+                <td>@item.name</td>
+                <td>@item.surname</td>
+                <td>@item.phone_number</td>
+                <td>@item.email</td>
+                <td>@item.address</td>
+                <td>@item.note</td>
+                <td>
+                    @if (item.favorite == "yes")
+                    {
+                        <a class="btn btn-danger btn-sm" href="/Unfollow?id=@item.id">Unfollow</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

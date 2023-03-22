@@ -1,0 +1,30 @@
+﻿@page
+
+@using System.Data.SqlClient;
+@{
+
+    String id = Request.Query["id"];
+    string fav = "yes";
+    try
+    {
+        String connectionString = "Data Source=.;Initial Catalog=PhoneBook;Integrated Security=True";
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            String sql = "UPDATE Contacts " +
+                         "SET Favorite='yes' " +
+                         "WHERE id=@id";
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@favorite", fav);
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        
+    }
+    Response.Redirect("/Contacts");
+}

@@ -1,0 +1,36 @@
+﻿@page
+@model PhoneBook.Pages.CreateFavoriteModel
+@{
+}
+<center>
+<br />
+<h1><center>Add Contact to Favorite List</center></h1
+<br /><br /><br />
+<table class="table" style="width: 50%;">
+    <thead>
+        <tr> 
+            <th>Name</th>  
+            <th>Surname</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.contactList)
+        {
+            <tr>
+                <td>@item.name</td>
+                <td>@item.surname</td>
+                <td>
+                    @if (item.favorite == "no")
+                    {
+                        <a class="btn btn-success btn-sm" href="/FollowFavorite?id=@item.id">Follow</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br /><br /><br /><br />
+<div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/Favorite" role="button">Back</a>
+        </div></center>
